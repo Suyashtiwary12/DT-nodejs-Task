@@ -27,5 +27,5 @@ async function main() {
 
 app.listen(port, () => {
   main();
-  console.log("Server running at http://localhost:4050");
+  console.log("Server is running");
 });
