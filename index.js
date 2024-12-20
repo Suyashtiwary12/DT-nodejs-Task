@@ -2,6 +2,10 @@ const express = require("express");
 const router = require("./routes/function.route"); 
 const app = express();
 const { MongoClient } = require("mongodb");
+require("dotenv").config();
+
+const port = process.env.PORT;
+const dbUrl = process.env.DB_CONNECT_URL;
 
 app.use(express.json());
 app.use("/api/v3/app", router);
@@ -9,7 +13,7 @@ app.use("/api/v3/app", router);
 let db; 
 
 async function main() {
-  const client = new MongoClient("mongodb+srv://suyashtonystark:testpass@cluster0.yhoqsps.mongodb.net/new");
+  const client = new MongoClient(dbUrl);
   
   try {
     await client.connect();
@@ -21,7 +25,7 @@ async function main() {
   } 
 }
 
-app.listen(4050, () => {
+app.listen(port, () => {
   main();
   console.log("Server running at http://localhost:4050");
 });
